@@ -1,0 +1,78 @@
+ESSAY PROJECT CODE
+
+
+def main():
+    try:
+        userfile = getfile()
+        readfile(userfile)
+    except AttributeError:
+        print("You do not have permission to the specified file")
+        print("Please check with your system administrator")
+
+def getfile():
+    ExitLoop = False
+    while ExitLoop == False:
+        try:
+            pathfile = input("What is the path of your file?: ")
+            file = open(pathfile,"r")
+            return file
+        except FileNotFoundError:
+            print("The file was not found. Try again")
+        except PermissionError:
+            ExitLoop = True
+def readfile(thefile):
+    #report = thefile.read() # not sure if this makes any difference. if it affects the way d code runs
+    a = 0
+    endofsentence = 0
+    report = thefile.read()
+    count = len(report)
+    for a in range(0, count):
+        if report[a] == '.' or report[a] == '!' or report[a] == ';' or report[a] == '?' or report[a] == ':':
+            endofsentence += 1
+    sentence = report.split('.') or ('?') or (':') or ('!') or (';')
+
+    words = report.split()
+    print(words)
+    print(sentence)
+    validwords = 0
+    testword = 0
+    b = 0
+    for a in words:
+        testword = words[b]
+        testword = len(testword)
+        if testword >= 3:
+            validwords += 1
+        b += 1
+
+    numberwords = len(words)
+    print("The number of words is: ", len(words))
+    print ("The total number of valid words is: ", validwords)
+    print("The average number of words per sentence is: ", validwords / endofsentence)
+    print("The total number of sentences: ", endofsentence)
+    # print(pathfile)
+
+main()
+
+
+RESULTS:
+
+"C:\Users\T Browne\Desktop\python.exe" "C:/Users/T Browne/PycharmProjects/EssayProject/.idea/essay code.py"
+What is the path of your file?: C:/Users/T Browne/Desktop/Essay Project/flametamersample.txt
+['THE', 'FLAME', 'TAMER', 'Once', 'upon', 'a', 'time,', 'there', 'was', 'a', 'flame', 'that', 'burned', 'uncontrollably.', 'Full', 'of', 'emotion,', 'desire', 'and', 'often', 'misunderstood,', 'travelled', 'with', 'very', 'few', 'companions', 'but', 'still', 'managed', 'to', 'feel', 'alone.', 'One', 'day,', 'she', 'met', 'cool', 'breeze,', 'he', 'pursued', 'the', 'flame,', 'they', 'seeming', 'different', 'attracted', 'instantly', 'to', 'each', 'other.', 'Cool', 'breeze', 'was', 'the', 'embodiment', 'of', 'strength,', 'beauty', 'and', 'gentleness.', 'For', 'weeks', 'their', 'essences', 'intertwined', 'together', 'creating', 'memories', 'the', 'flame', 'will', 'always', 'remember.']
+['THE FLAME TAMER\n\nOnce upon a time, there was a flame that burned uncontrollably', '\nFull of emotion, desire and often misunderstood, travelled with very few companions but still managed to feel alone', '\nOne day, she met cool breeze, he pursued the flame, they seeming different attracted instantly to each other', '\nCool breeze was the embodiment of strength, beauty and gentleness', '\nFor weeks their essences intertwined together creating memories the flame will always remember', '\n']
+The number of words is:  73
+The total number of valid words is:  66
+The average number of words per sentence is:  13.2
+The total number of sentences:  5
+
+Process finished with exit code 0
+
+
+WRITING SAMPLE:
+THE FLAME TAMER
+
+Once upon a time, there was a flame that burned uncontrollably.
+Full of emotion, desire and often misunderstood, travelled with very few companions but still managed to feel alone.
+One day, she met cool breeze, he pursued the flame, they seeming different attracted instantly to each other.
+Cool breeze was the embodiment of strength, beauty and gentleness.
+For weeks their essences intertwined together creating memories the flame will always remember.
